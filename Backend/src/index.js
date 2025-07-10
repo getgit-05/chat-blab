@@ -1,22 +1,5 @@
-// Add process-level error handlers to prevent server crash
-process.on('uncaughtException', (err) => {
-  console.error('Uncaught Exception:', err);
-});
-process.on('unhandledRejection', (reason, promise) => {
-  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
-});
-
 const express=require("express")
-
-// Logging middleware to debug incoming requests
-const logRequest = (req, res, next) => {
-  console.log("Incoming request path:", req.path, "Original URL:", req.originalUrl);
-  next();
-};
-// Add the logger as the very first middleware
-
 const {io,server,app} =require("./services/socket")
-app.use(logRequest)
 const authRoute=require("./routes/auth")
 const messageRoute=require("./routes/message.routes")
 const followerRoute=require('./routes/follower.route')
@@ -53,22 +36,12 @@ app.use("/api/auth",authRoute)
 app.use("/api/messages",protect,messageRoute)
 app.use("/api/follower",protect,followerRoute)
 
-app.all('*', (req, res) => {
-  res.status(404).send('Not found');
-});
-
-// Robust error handler
-app.use((err, req, res, next) => {
-  console.error('Unhandled error:', err);
-  res.status(500).send('Internal Server Error');
-});
-
 
 app.use(express.static(path.join(_dirname,"../frontend/dist")))
 
-app.get("*",(req,res)=>{
-    res.sendFile(path.join(_dirname,"../frontend","dist","index.html"))
-})
+app.get(/^\/(?!api).*/, (req, res) => {
+  res.sendFile(path.join(_dirname, "../frontend", "dist", "index.html"));
+});
 
 
 server.listen(port,()=>{
