@@ -38,7 +38,7 @@ function Signin() {
         <div className="w-full lg:w-1/2 flex flex-col justify-center px-12 pt-4 pb-4 gap-5 h-full">
           <h2 className="text-2xl font-extrabold text-white text-center mb-1">Sign up for ChatApp</h2>
           <p className="text-base text-amber-200 text-center mb-2">Create your account to start chatting!</p>
-          <form className="flex flex-col gap-4" onSubmit={submitHandler} action="http://localhost:8000/api/auth/signin" method="POST">
+          <form className="flex flex-col gap-4" onSubmit={submitHandler} method="POST">
             <div className="flex flex-col gap-2">
               <label htmlFor="name" className="text-base font-medium text-amber-100">Name</label>
               <input

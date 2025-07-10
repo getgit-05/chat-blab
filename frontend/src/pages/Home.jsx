@@ -78,22 +78,24 @@ function Home(prop) {
               ? user.map((fr) => (
                   <li key={fr._id} className={`${data?.selectUser?._id==fr._id?"bg-base-300":""} list-row border-0 p-0  sm:rounded-b-none sm:rounded-t-none hover:bg-base-300`}>
     
-                    <button className={`${data?.selectUser?._id==fr._id?"bg-base-300":""} relative pt-2 pl-1 w-[300px] h-[80px] flex gap-2.5`} onClick={()=>handleClick(fr)}
-                      >
-                    <div>
-                      <img
-                        className="size-14 rounded-full"
-                        src={
-                          fr.profileImageUrl ||
-                          "https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-                        }
-                      />
-                    </div>
-                    <div className="mr-[32px]">
-                      <div>{fr.name}</div>
-                      <div className={`flex items-center ${prop.data.includes(fr._id)?"text-green-500":"text-white"} `} >{prop.data.includes(`${fr._id}`)?"Online":"Offline"}</div>
-                    </div>
-                    <div className="self-star absolute right-[1%] text-[12px]">{new Date(fr.lastMessageAt).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit",hour12:false})}</div>
+                    <button
+                      className={`${data?.selectUser?._id==fr._id?"bg-base-300":""} relative pt-2 pl-1 w-full h-[80px] flex items-center gap-2.5 justify-start`}
+                      onClick={()=>handleClick(fr)}
+                    >
+                      <div>
+                        <img
+                          className="size-14 rounded-full"
+                          src={
+                            fr.profileImageUrl ||
+                            "https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
+                          }
+                        />
+                      </div>
+                      <div className="mr-4 min-w-0 flex-1">
+                        <div className="truncate">{fr.name}</div>
+                        <div className={`flex items-center ${prop.data.includes(fr._id)?"text-green-500":"text-white"} `} >{prop.data.includes(`${fr._id}`)?"Online":"Offline"}</div>
+                      </div>
+                      <div className="ml-auto text-[12px] whitespace-nowrap">{new Date(fr.lastMessageAt).toLocaleTimeString([], {hour:"2-digit",minute:"2-digit",hour12:false})}</div>
                     </button>
                   </li>
                 ))
