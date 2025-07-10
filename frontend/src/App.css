@@ -1,0 +1,8 @@
+
+#chatcon{
+    overflow-y:scroll;
+    height: 85.6vh;
+}
+#chatcon::-webkit-scrollbar {
+    display: none;
+}
