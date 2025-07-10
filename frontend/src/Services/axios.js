@@ -1,6 +1,6 @@
 import axios from "axios"
 
 export const axiosInstance=axios.create({
-    baseURL:"http://localhost:8000/api",
+    baseURL:"https://chat-blab.onrender.com/api",
     withCredentials:true,
 })

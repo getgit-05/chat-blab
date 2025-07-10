@@ -21,7 +21,7 @@ const port=process.env.PORT || 8000
 connectDb(process.env.MONGODB_URL)
 
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin:"https://chat-blab.onrender.com",
     credentials:true,
 
 }))

@@ -1,3 +1,3 @@
 import { io } from "socket.io-client";
-const socket = io("http://localhost:8000", { autoConnect: false });
+const socket = io("https://chat-blab.onrender.com", { autoConnect: false });
 export default socket;
