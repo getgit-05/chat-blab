@@ -30,7 +30,11 @@ const signin= async(req,res)=>{
             res.status(400).json({msg:"An Error Occured"})
             return
         }
-        res.cookie("token",token).status(200).json(
+        res.cookie("token",token,{
+            httpOnly: true,
+            sameSite: "lax",
+            maxAge: 7*24*60*60*1000
+        }).status(200).json(
             {
                 _id:user._id,
                 name:user.name,
@@ -67,7 +71,11 @@ const login=async (req,res)=>{
             return res.status(400).json({msg:"An Error Occured"})
         }
 
-        return res.status(200).cookie("token",token).json(
+        return res.status(200).cookie("token",token,{
+            httpOnly: true,
+            sameSite: "lax",
+            maxAge: 7*24*60*60*1000
+        }).json(
             {
             _id:user._id,
             name:user.name,
@@ -91,6 +99,20 @@ const logout=(req,res)=>{
     
 }
 
+function getPublicIdFromUrl(url) {
+  const parts = url.split('/');
+  const fileNameWithExtension = parts[parts.length - 1];
+  const fileName = fileNameWithExtension.split('.')[0]; 
+  
+  const uploadIndex = parts.findIndex(part => part === 'upload');
+
+  const folderParts = parts.slice(uploadIndex + 2, parts.length - 1); 
+  folderParts.push(fileName); 
+
+  return folderParts.join('/');
+}
+
+
 
 const upload=async (req,res)=>{
     try{
@@ -98,8 +120,10 @@ const upload=async (req,res)=>{
         if(!file) return res.status(400).json({msg:"File is Required !!!"})
         const result=await cloudinary.uploader.upload(file);
         const userID=req.user._id;
-
+        const publicId=getPublicIdFromUrl(req.user.profileImageUrl)
+        if(!publicId) return res.status(400).json({msg:"Public Id Not Found"})
         const user=await User.findByIdAndUpdate(userID,{profileImageUrl:result.secure_url},{new:true})
+        const imgDeleted=await cloudinary.uploader.destroy(publicId,{invalidate:true})
         if(!user) return res.status(400).json({msg:"Invalid User"})
         return res.status(200).json({profileImageUrl:result.secure_url});
     }catch(err){

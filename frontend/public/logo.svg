@@ -1,0 +1,12 @@
+<svg width="32" height="32" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <!-- Circle -->
+  <circle cx="40" cy="40" r="30" fill="#4F46E5"/>
+
+  <!-- Larger eyes -->
+  <circle cx="32" cy="34" r="4" fill="white"/>
+  <circle cx="48" cy="34" r="4" fill="white"/>
+
+  <!-- Thicker smile -->
+  <path d="M32 44 Q40 52 48 44" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>
+
