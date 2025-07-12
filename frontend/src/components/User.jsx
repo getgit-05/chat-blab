@@ -3,7 +3,7 @@ import { protectContext } from "../store/authStoree";
 import { Users, UserPlus } from 'lucide-react';
 import { useFollower } from '../store/followerStore';
 import { useMessages } from '../store/chatStore';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import socket from '../Services/socket';
 import Input from './Input'
 
@@ -14,15 +14,17 @@ function User(prop) {
   const protect = useContext(protectContext);
   const msg=useMessages()
   const follow=useFollower()
-  const navigate=useNavigate()
   const {id}=useParams()
   const [showMessageInput, setShowMessageInput] = useState(false);
 
   useEffect(()=>{
     protect.loadUser(id)
     msg?.setSelectUser(user)
-    // follow.followerCount(id)
   },[])
+  useEffect(()=>{
+    protect.loadUser(id)
+    msg?.setSelectUser(user)
+  },[id])
 
 
   useEffect(()=>{
@@ -56,6 +58,11 @@ function User(prop) {
   useEffect(()=>{
     follow.fetchFollower(id)
 },[])
+
+useEffect(()=>{
+  follow.fetchFollower(id)
+  follow.followerCount(id)
+},[id])
 
   useEffect(()=>{
     follow.fetchFollower(id)
