@@ -1,5 +1,5 @@
 const express=require("express")
-const {io,server,app} =require("./services/socket")
+const {server,app} =require("./services/socket")
 const authRoute=require("./routes/auth")
 const messageRoute=require("./routes/message.routes")
 const followerRoute=require('./routes/follower.route')
@@ -21,8 +21,8 @@ connectDb(process.env.MONGODB_URL)
 app.use(cors({
     origin:"https://chat-blab.onrender.com",
     credentials:true,
-
 }))
+
 app.use(express.urlencoded({limit: '10mb',extended:false}))
 app.use(express.json({limit:"10mb"}))
 app.use(cookieParser())

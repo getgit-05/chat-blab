@@ -22,7 +22,7 @@ function Chat(prop) {
     }
 
   return (
-    <div className="bg-base-300 h-[92vh]">
+    <div className="bg-base-300 h-full">
         <div className="user">
             <div className="navbar bg-neutral text-neutral-content">
                 <div className="avatar">

@@ -69,12 +69,11 @@ function Home(prop) {
   let user = data?.users?.data;
 
   return (
-    <div className="h-screen w-full bg-black p-2 flex gap-2">
+    <div className="flex h-screen min-w-full bg-black md:gap-2 md:p-2 gap-0 p-0">
 
       <div
         className={
-          // Hide user list on mobile if chat is open
-          `w-full h-224 mt-2.5 rounded-2xl bg-[#181A20] shadow-2xl md:w-[25%] sm:w-[35%] p-0 m-0 flex flex-col ` +
+          `w-full h-full mt-2.5 rounded-2xl bg-[#181A20] shadow-2xl md:w-[25%] sm:w-[35%] p-0 m-0 flex flex-col ` +
           (showChatMobile ? 'hidden' : 'block') +
           ' md:block'
         }
@@ -113,7 +112,8 @@ function Home(prop) {
       </div>
       <div
         className={
-           `w-full h-170 border-2 border-black mt-2.5 rounded bg-black md:w-[75%] sm:w-[65%] ` +
+          // Hide chat container on mobile unless showChatMobile is true
+          `w-full h-full border-2 border-black mt-2.5 rounded bg-black md:w-[75%] sm:w-[65%] ` +
           (showChatMobile ? 'block' : 'hidden') +
           ' md:block'
         }

@@ -50,11 +50,11 @@ function ChatMsg(prop) {
   return (
     <div>
       {dataa.msgLoad ? (
-        <div className="w-full h-[72vh] pt-2 pl-1 pr-1 overflow-auto"></div>
+        <div className="w-full h-[80vh] pt-2 pl-1 pr-1 overflow-auto"></div>
       ) : (
 
         
-        <div className={`w-full h-[72vh] pt-2 pl-1 pr-1 overflow-auto relative`}>
+        <div className={`w-full h-[80vh] pt-2 pl-1 pr-1 overflow-auto relative`}>
           
           {msg?.map((message) => (
             
