@@ -67,10 +67,10 @@ function Profile() {
         {/* Sidebar */}
         <div className="flex flex-col items-center bg-gray-800/80 rounded-2xl shadow-xl p-8 md:w-1/3 w-full">
           <div className="relative mb-4">
-            {isUploading?<div className="w-32 h-32 flex justify-center items-center rounded-full border-4 border-blue-900 shadow-2xl object-cover bg-gray-900"><Loader2 className="size-10 animate-spin"/></div>:
+            {protect?.isUploading?<div className="w-32 h-32 flex justify-center items-center rounded-full border-4 border-blue-900 shadow-2xl object-cover bg-gray-900"><Loader2 className="size-10 animate-spin"/></div>:
             <img
               className="w-32 h-32 rounded-full border-4 border-blue-900 shadow-2xl object-cover bg-gray-900"
-              src={user.profileImageUrl || "https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"}
+              src={user.profileImageUrl}
               alt="Profile"
             />}
             <label htmlFor="image-upload" className="absolute bottom-2 right-2 cursor-pointer group">
