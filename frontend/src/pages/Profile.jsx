@@ -43,7 +43,6 @@ function Profile() {
       const ufile = read.result;
       await protect.upload({ file: ufile });
     };
-    toast.success("Uploaded !!!")
 
     }
     catch(error){
