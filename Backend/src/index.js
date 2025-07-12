@@ -14,8 +14,6 @@ dotenv.config()
 const _dirname=path.resolve()
 
 
-
-
 const port=process.env.PORT || 8000
 
 connectDb(process.env.MONGODB_URL)
@@ -32,10 +30,11 @@ app.use(cookieParser())
 
 
 
+
+
 app.use("/api/auth",authRoute)
 app.use("/api/messages",protect,messageRoute)
 app.use("/api/follower",protect,followerRoute)
-
 
 app.use(express.static(path.join(_dirname,"../frontend/dist")))
 

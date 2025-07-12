@@ -27,7 +27,7 @@ function Chat(prop) {
             <div className="navbar bg-neutral text-neutral-content">
                 <div className="avatar">
                 <div className="w-12 rounded-full">
-                  <img src={prop.user.profileImageUrl || "https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"}/>
+                  <img src={prop.user.profileImageUrl}/>
                 </div>
                 </div>
 

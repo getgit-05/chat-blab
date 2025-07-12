@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef, useEffect } from 'react'
+import { useContext, useState, useRef, useEffect } from 'react'
 import { protectContext } from '../store/authStoree'
 import { useTheme } from '../store/themeStore'
 import { Link, useNavigate } from 'react-router-dom'
@@ -73,7 +73,6 @@ function Nav(prop) {
           </ul>}
         </div>
       </div>
-      {/* Animated Search Bar Overlay */}
       <div
         className={`absolute left-0 top-0 w-full h-full flex items-center transition-all duration-300 z-30 ${showSearchBar ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
         style={{background: showSearchBar ? 'rgba(0,0,0,1)' : 'rgba(0,0,0,0)', minHeight: '64px'}}
@@ -115,7 +114,7 @@ function Nav(prop) {
                         navigate(`/user/${user._id}`);
                       }}
                     >
-                      <img src={user.profileImageUrl || 'https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp'} alt={user.name} className="w-8 h-8 rounded-full border" />
+                      <img src={user.profileImageUrl} alt={user.name} className="w-8 h-8 rounded-full border" />
                       <span className="text-amber-200 font-medium">{user.name}</span>
                     </div>
                   ))
@@ -125,7 +124,6 @@ function Nav(prop) {
           </div>
         </div>
       </div>
-      {/* Hide Blab when search is active */}
       {!showSearchBar && (
         <div className="navbar-center">
           <a className="btn btn-ghost text-xl text-amber-300 font-bold tracking-wide">Blab</a>

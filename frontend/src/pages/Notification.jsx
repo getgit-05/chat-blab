@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { UserPlus, Users, Check, X, User, Link } from 'lucide-react';
+import { UserPlus, Users, Check, X, User, Loader } from 'lucide-react';
 import { useFollower } from '../store/followerStore';
 import socket from '../Services/socket';
 import { useMessages } from '../store/chatStore';
@@ -11,6 +11,9 @@ function Notification(prop) {
   const follow=useFollower()
   const msg=useMessages()
   const navigate=useNavigate()
+
+  const [acceptId,setAcceptId]=useState(null)
+  const [rejectId,setRejectId]=useState(null)
   useEffect(()=>{
     follow.getRequests()
     msg.suggestUser()
@@ -44,11 +47,13 @@ function Notification(prop) {
 
   const handleDelete=(e,id)=>{
     e.preventDefault()
+    setRejectId(id)
     follow.deleteReq(id)
   }
 
   const handleAccept=(e,id)=>{
     e.preventDefault()
+    setAcceptId(id)
     follow.acceptReq(id)
   }
 
@@ -85,12 +90,18 @@ function Notification(prop) {
                     <div className="text-purple-100 font-medium text-lg">{user.followedBy.name}</div>
                   </div>
                   <div className="flex gap-2">
+                  {follow?.isAccepting && acceptId===user._id ?<button onClick={(e)=>handleAccept(e,user._id)} className="bg-green-900/30 hover:bg-green-800/60 text-green-300 rounded-full p-2 shadow transition" title="Accept">
+                     <Loader className="animate-spin w-5 h-5" />
+                    </button>:
                     <button onClick={(e)=>handleAccept(e,user._id)} className="bg-green-900/30 hover:bg-green-800/60 text-green-300 rounded-full p-2 shadow transition" title="Accept">
-                      <Check className="w-5 h-5" />
-                    </button>
+                     <Check className="w-5 h-5" />
+                    </button>}
+                    {follow?.isDelReq && rejectId===user._id ?<button onClick={(e)=>handleDelete(e,user._id)} className="bg-red-900/30 hover:bg-red-800/60 text-red-300 rounded-full p-2 shadow transition" title="Decline">
+                      <Loader className="w-5 h-5 animate-spin"/>
+                    </button>:
                     <button onClick={(e)=>handleDelete(e,user._id)} className="bg-red-900/30 hover:bg-red-800/60 text-red-300 rounded-full p-2 shadow transition" title="Decline">
                       <X className="w-5 h-5" />
-                    </button>
+                    </button>}
                   </div>
                 </div>
               ))}

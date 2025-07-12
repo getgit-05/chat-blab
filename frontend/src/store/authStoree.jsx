@@ -2,10 +2,10 @@ import {createContext, useContext, useMemo} from 'react'
 import { axiosInstance } from '../Services/axios'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import {io} from "socket.io-client"
-
 import socket from "../Services/socket"
-import { redirect, useNavigate} from 'react-router-dom'
+import {  useNavigate} from 'react-router-dom'
+
+
 
 export const protectContext=createContext(null)
 
@@ -30,7 +30,6 @@ export const ProtectProvider= (prop)=>{
     const [onlineUsers,setOnlineUsers]=useState([])
 
     const navigate=useNavigate()
-
     const checkAuth=async ()=>{
         setIsChecking(true)
         try{

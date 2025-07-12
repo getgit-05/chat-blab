@@ -16,10 +16,10 @@ function Signin() {
     const protect=useContext(protectContext)
     const[showPass,setShowPass]=useState(true)
 
-    const submitHandler=(e)=>{
-        e.preventDefault()
-        validate()
-        protect.signin(formData)
+    const submitHandler = async (e) => {
+        e.preventDefault();
+        if (!validate()) return;
+        await protect.signin(formData);
     }
     const validate=()=>{
         if(!formData.name.trim()) return toast.error("Full Name Is Required")

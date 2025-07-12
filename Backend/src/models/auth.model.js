@@ -16,7 +16,7 @@ const userSchema=new mongoose.Schema({
     },
     profileImageUrl:{
         type:String,
-        default:"https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
+        default:"https://chat-blab.onrender.com/public/avatar.svg"
     },
     bio:{
         type:String,

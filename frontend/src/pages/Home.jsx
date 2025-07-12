@@ -14,10 +14,14 @@ function Home(prop) {
   const data = useMessages();
   const [hasNotified,setHasNotified]=useState(false)
   const follow=useFollower()
+  const [showChatMobile, setShowChatMobile] = useState(false); // new state
 
 
   useEffect(() => {
     data.getUser();
+  }, []);
+  useEffect(() => {
+    follow.getRequests()  
   }, []);
 
 
@@ -58,44 +62,48 @@ function Home(prop) {
 
   const handleClick=(userId)=>{
     data.setSelectUser(userId)
+    // On mobile, show chat container
+    if (window.innerWidth < 768) setShowChatMobile(true);
   }
 
   let user = data?.users?.data;
 
   return (
     <div className="h-screen w-full bg-black p-2 flex gap-2">
+
       <div
-        
-        className="h-179  mt-2.5 rounded bg-base-300 md:w-[25%] sm:w-[35%] "
+        className={
+          // Hide user list on mobile if chat is open
+          `w-full h-224 mt-2.5 rounded-2xl bg-[#181A20] shadow-2xl md:w-[25%] sm:w-[35%] p-0 m-0 flex flex-col ` +
+          (showChatMobile ? 'hidden' : 'block') +
+          ' md:block'
+        }
       >
-        <h1 className="text-white text-2xl ml-2.5 mt-2 mb-3">Chats</h1>
-        <div className="overflow-auto h-[84vh]">
+        <h1 className="text-white text-2xl font-bold ml-6 mt-6 mb-6 tracking-tight">Chats</h1>
+        <div className="overflow-auto h-[84vh] p-0 m-0 flex-1">
           <ul
             id="chatsec"
-            className="list bg-base-100 overflow-hidden scroll-m-6 shadow-md"
+            className="list bg-transparent overflow-hidden p-0 m-0 flex flex-col gap-3"
           >
             {user
               ? user.map((fr) => (
-                  <li key={fr._id} className={`${data?.selectUser?._id==fr._id?"bg-base-300":""} list-row border-0 p-0  sm:rounded-b-none sm:rounded-t-none hover:bg-base-300`}>
-    
+                  <li key={fr._id} className={`transition-all duration-200 ${data?.selectUser?._id==fr._id?"border-2 border-blue-500 bg-[#23263a] scale-[1.01] shadow-lg":"hover:bg-[#23263a]/80"} w-full border-0 p-0 m-0 rounded-xl relative`}>    
                     <button
-                      className={`${data?.selectUser?._id==fr._id?"bg-base-300":""} relative pt-2 pl-1 w-full h-[80px] flex items-center gap-2.5 justify-start`}
+                      className={`group relative w-full flex items-center px-4 py-3 rounded-xl transition-all duration-200 focus:outline-none ${data?.selectUser?._id==fr._id?"bg-[#23263a]":"bg-[#1a1c23]"}`}
                       onClick={()=>handleClick(fr)}
                     >
-                      <div>
-                        <img
-                          className="size-14 rounded-full"
-                          src={
-                            fr.profileImageUrl ||
-                            "https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-                          }
-                        />
+                      <img
+                        className="size-14 rounded-full border-2 border-[#23263a] shadow object-cover bg-gray-800"
+                        src={fr.profileImageUrl}
+                        alt={fr.name}
+                      />
+                      <div className="flex-1 flex flex-col items-start ml-2 min-w-0">
+                        <div className="truncate text-base font-semibold text-white mb-1">{fr.name}</div>
+                        <span className={`inline-block w-fit px-2 py-0.5 rounded-full text-xs font-medium ${prop.data.includes(fr._id)?"bg-green-600/80 text-white":"bg-gray-600/80 text-gray-200"}`}>{prop.data.includes(`${fr._id}`)?"Online":"Offline"}</span>
                       </div>
-                      <div className="mr-4 min-w-0 flex-1">
-                        <div className="truncate">{fr.name}</div>
-                        <div className={`flex items-center ${prop.data.includes(fr._id)?"text-green-500":"text-white"} `} >{prop.data.includes(`${fr._id}`)?"Online":"Offline"}</div>
+                      <div className="absolute bottom-3 right-5 text-xs text-gray-400 bg-[#23263a] px-2 py-0.5 rounded font-semibold shadow border border-[#23263a]">
+                        {new Date(fr.lastMessageAt).toLocaleTimeString([], {hour:"2-digit",minute:"2-digit",hour12:false})}
                       </div>
-                      <div className="ml-auto text-[12px] whitespace-nowrap">{new Date(fr.lastMessageAt).toLocaleTimeString([], {hour:"2-digit",minute:"2-digit",hour12:false})}</div>
                     </button>
                   </li>
                 ))
@@ -103,8 +111,22 @@ function Home(prop) {
           </ul>
         </div>
       </div>
-      <div className="h-170 border-2 border-black mt-2.5 rounded bg-black md:w-[75%] sm:w-[65%]">
-
+      <div
+        className={
+           `w-full h-170 border-2 border-black mt-2.5 rounded bg-black md:w-[75%] sm:w-[65%] ` +
+          (showChatMobile ? 'block' : 'hidden') +
+          ' md:block'
+        }
+      >
+       
+        {showChatMobile && (
+          <button
+            className="md:hidden text-white px-4 py-2 mb-2 bg-gray-800 rounded shadow"
+            onClick={() => setShowChatMobile(false)}
+          >
+            ←
+          </button>
+        )}
         {data.selectUser?<Chat user={data.selectUser}/>:<Image/>}
       </div>
     </div>

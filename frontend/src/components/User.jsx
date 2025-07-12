@@ -59,7 +59,7 @@ function User(prop) {
 
   useEffect(()=>{
     follow.fetchFollower(id)
-},[protect.loadUser,protect.usser,follow.isUnfollowing,follow.isFollowing, follow.isDelReq])
+},[protect.loadUser,protect.usser,follow.isUnfollowing,follow.isfollowing, follow.isDelReq])
 
   const unfollow=(e)=>{
     e.preventDefault()
@@ -86,7 +86,7 @@ function User(prop) {
             ) : (
               <img
                 className="w-32 h-32 rounded-full border-4 border-blue-900 shadow-2xl object-cover bg-gray-900"
-                src={user.profileImageUrl || "https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"}
+                src={user.profileImageUrl}
                 alt="Profile"
               />
             )}
@@ -119,7 +119,7 @@ function User(prop) {
               <UserPlus className="w-5 h-5" />
               {follow.followerData?.data?.accept?"Unfollow":"Requested"}
             </button>:
-            follow?.isFollowing?
+            follow?.isfollowing?
             <button onClick={(e)=>e.preventDefault()}
               className="flex items-center justify-center gap-2 px-6 py-2 rounded-full bg-red-400/80 text-white font-semibold shadow-lg hover:from-purple-600 hover:to-blue-600 transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 w-full md:w-auto"
             >

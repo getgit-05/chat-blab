@@ -12,12 +12,11 @@ function Login() {
   const [showPass, setShowPass] = useState(true);
   const protect=useContext(protectContext)
   const navigate=useNavigate()
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    validate()
-    protect.login(formData)
-    navigate("/")
-  };
+    if (!validate()) return;
+    await protect.login(formData);
+     };
 
   const validate=()=>{
   if(!formData.email) return toast.error("Email Is required")
