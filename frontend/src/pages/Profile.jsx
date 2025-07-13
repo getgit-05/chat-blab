@@ -70,7 +70,7 @@ function Profile() {
             {protect?.isUploading?<div className="w-32 h-32 flex justify-center items-center rounded-full border-4 border-blue-900 shadow-2xl object-cover bg-gray-900"><Loader2 className="size-10 animate-spin"/></div>:
             <img
               className="w-32 h-32 rounded-full border-4 border-blue-900 shadow-2xl object-cover bg-gray-900"
-              src={user.profileImageUrl}
+              src={user.profileImageUrl || "https://res.cloudinary.com/du9bkkccq/image/upload/v1752337424/t58jiptx00gqj34a8eh8.svg"}
               alt="Profile"
             />}
             <label htmlFor="image-upload" className="absolute bottom-2 right-2 cursor-pointer group">

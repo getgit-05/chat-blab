@@ -84,7 +84,7 @@ function Notification(prop) {
                     zIndex: followRequests.length - i,
                   }}
                 >
-                  <img src={user?.followedBy?.profileImageUrl} alt={user?.followedBy?.name} className="w-12 h-12 rounded-full border-2 border-blue-900 shadow" />
+                  <img src={user?.followedBy?.profileImageUrl || "https://res.cloudinary.com/du9bkkccq/image/upload/v1752337424/t58jiptx00gqj34a8eh8.svg"} alt={user?.followedBy?.name} className="w-12 h-12 rounded-full border-2 border-blue-900 shadow" />
                   <div className="flex-1">
                     <div className="text-blue-100 font-medium text-lg">{user.followedeBy?.name}</div>
                     <div className="text-purple-100 font-medium text-lg">{user.followedBy.name}</div>
@@ -135,7 +135,7 @@ function Notification(prop) {
                     zIndex: suggestedFollowers.length - i,
                   }}
                 >
-                  <img src={sug.profileImageUrl} alt={sug.name} className="w-12 h-12 rounded-full border-2 border-purple-900 shadow" />
+                  <img src={sug.profileImageUrl || "https://res.cloudinary.com/du9bkkccq/image/upload/v1752337424/t58jiptx00gqj34a8eh8.svg"} alt={sug.name} className="w-12 h-12 rounded-full border-2 border-purple-900 shadow" />
                   <div className="flex-1">
                     <div className="text-purple-100 font-medium text-lg">{sug.name}</div>
                   </div>

@@ -57,7 +57,7 @@ function Input() {
   return (
     <div className="w-full">
           
-  {preview && <div className="avatar position absolute bottom-15">
+  {preview && <div className="avatar position absolute bottom-5">
     <div className="indicator absolute right-[-5%] top-[-4%] border-1 rounded-full h-3 w-3">
             <button className='bg-base-300 h-6 w-3 border-0' onClick={canclePreview}></button>
           </div>

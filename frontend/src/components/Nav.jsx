@@ -114,7 +114,7 @@ function Nav(prop) {
                         navigate(`/user/${user._id}`);
                       }}
                     >
-                      <img src={user.profileImageUrl} alt={user.name} className="w-8 h-8 rounded-full border" />
+                      <img src={user.profileImageUrl || "https://res.cloudinary.com/du9bkkccq/image/upload/v1752337424/t58jiptx00gqj34a8eh8.svg"} alt={user.name} className="w-8 h-8 rounded-full border" />
                       <span className="text-amber-200 font-medium">{user.name}</span>
                     </div>
                   ))

@@ -93,7 +93,7 @@ useEffect(()=>{
             ) : (
               <img
                 className="w-32 h-32 rounded-full border-4 border-blue-900 shadow-2xl object-cover bg-gray-900"
-                src={user.profileImageUrl}
+                src={user.profileImageUrl || "https://res.cloudinary.com/du9bkkccq/image/upload/v1752337424/t58jiptx00gqj34a8eh8.svg"}
                 alt="Profile"
               />
             )}

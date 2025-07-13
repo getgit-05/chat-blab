@@ -93,7 +93,7 @@ function Home(prop) {
                     >
                       <img
                         className="size-14 rounded-full border-2 border-[#23263a] shadow object-cover bg-gray-800"
-                        src={fr.profileImageUrl}
+                        src={fr.profileImageUrl || "https://res.cloudinary.com/du9bkkccq/image/upload/v1752337424/t58jiptx00gqj34a8eh8.svg"}
                         alt={fr.name}
                       />
                       <div className="flex-1 flex flex-col items-start ml-2 min-w-0">

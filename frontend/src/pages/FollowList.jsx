@@ -57,7 +57,7 @@ function FollowList() {
                 className="flex items-center gap-4 bg-gradient-to-r from-blue-900/60 via-purple-900/60 to-gray-900/60 rounded-2xl shadow-lg px-6 py-4 border-l-4 border-blue-700/60 animate-slide-in"
               >
                 <img
-                  src={user?.follower?.profileImageUrl || "https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"}
+                  src={user?.follower?.profileImageUrl || "https://res.cloudinary.com/du9bkkccq/image/upload/v1752337424/t58jiptx00gqj34a8eh8.svg"}
                   alt={user?.follower?.name}
                   className="w-14 h-14 rounded-full border-2 border-blue-900 shadow"
                 />
@@ -84,7 +84,7 @@ function FollowList() {
                 className="flex items-center gap-4 bg-gradient-to-r from-blue-900/60 via-purple-900/60 to-gray-900/60 rounded-2xl shadow-lg px-6 py-4 border-l-4 border-blue-700/60 animate-slide-in"
               >
                 <img
-                  src={user?.following?.profileImageUrl || "https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp" }
+                  src={user?.following?.profileImageUrl || "https://res.cloudinary.com/du9bkkccq/image/upload/v1752337424/t58jiptx00gqj34a8eh8.svg" }
                   alt={user?.following?.name}
                   className="w-14 h-14 rounded-full border-2 border-blue-900 shadow"
                 />

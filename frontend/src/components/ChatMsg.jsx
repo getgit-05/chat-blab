@@ -67,7 +67,7 @@ function ChatMsg(prop) {
               <div className="chat-image avatar">
                 <div className="w-10 rounded-full">
                   <img
-                    src={message.senderId?.profileImageUrl || "https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"}
+                    src={message.senderId?.profileImageUrl || "https://res.cloudinary.com/du9bkkccq/image/upload/v1752337424/t58jiptx00gqj34a8eh8.svg"}
                   />
                 </div>
               </div>
@@ -87,7 +87,6 @@ function ChatMsg(prop) {
               )}
             </div>
           ))}
-          {/* Custom context menu */}
           {menu.visible && menu.senderId!==dataa.selectUser._id?
              <div
               className="fixed z-50 bg-white shadow-xl rounded-lg p-2 min-w-[120px] border border-gray-200"
@@ -104,7 +103,6 @@ function ChatMsg(prop) {
             </div>
           :null}
 
-          {/* Show 'Sending...' indicator when an image is being sent */}
           {mess.isSending && (
             <div className={`chat ${dataa.selectUser._id === dataa.selectUser._id ? "chat-end" : "chat-start"}`}>
               <div className="chat-image avatar">
